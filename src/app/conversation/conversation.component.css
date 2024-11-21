@@ -1,0 +1,28 @@
+.conversationPage{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.messagesPart{
+    overflow: auto;
+    padding-bottom: 55px;
+}
+
+.bottomPart {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+}
+
+.textArea{
+    width: 95%;
+}
+
+.buttonSend{
+    width: 10%;
+}

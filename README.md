@@ -1,59 +1,46 @@
-# RenduMessagerie
+# MessagesApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.
+## Running
 
-## Development server
-
-To start a local development server, run:
+To use my project, you just have to run the following command:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Then, you can go to this link http://localhost:4200/ to try the app.
 
-## Code scaffolding
+## How it works
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Creation or login
+You can create your own account or use an existing account. You can find them in the app.component.ts file, with
+the username and the password. For this project, I didn't try to do protected and hashed 
+password, but we can easily imagine doing this for a bigger project.
 
-```bash
-ng generate component component-name
-```
+### Navigation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+You can navigate by using the sidebar. You can try to write a random url if you want but at your own risk.
 
-```bash
-ng generate --help
-```
+### What you can do on the app
 
-## Building
+You can discuss with any users you can find on the list at the home page.
 
-To build the project run:
+### Missing features
 
-```bash
-ng build
-```
+There is a 'Groups' tab but there is nothing on it : time is missing !
+Same for the search bar that doesn't exist at all.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Some areas of improvement
 
-## Running unit tests
+We can imagine a profile tab on which you can edit your profile. Maybe have more options for the user (profile picture, pseudo, little description).
+Maybe the possibility to interact with some messages by adding some reactions like smileys or just the possibility to delete one of your message.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## How to reset database on your browser
 
-```bash
-ng test
-```
+You can try the shortcut 'CTRL + SHIFT + I' or just right click and press inspect on the page.
+After that you can go to the 'Storage tab' where you'll find the 'Indexed DB'. Left click on it, then on the 'http://localhost:4200' and finally
+right-click on the 'messagerieApp (default)' to delete it.
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -1,4 +1,40 @@
-<div class="home-container">
-  <h2>Bienvenue, {{ user?.name }} !</h2>
-  <button (click)="logout()">Déconnexion</button>
-</div>
+
+<h2>List of users with an existing conversation</h2>
+
+@if (usersWithConversations.length > 0) {
+
+    <div>
+        <ul>
+            @for (user of usersWithConversations; track user){
+                <li (click)="startConversation(user)">
+                    {{ user.name }} (#{{ user.username }})
+<!--                    => {{user.id}}-->
+                </li>
+            }
+
+        </ul>
+    </div>
+} @else {
+<p>There is no existing conversation. </p>
+}
+
+
+
+@if (users.length > 0) {
+
+    <h2>List of all users</h2>
+
+    <div>
+        <ul>
+            @for (user of users; track user){
+                <li (click)="startConversation(user)">
+                    {{ user.name }} (#{{ user.username }})
+<!--                    => {{user.id}}-->
+                </li>
+            }
+
+        </ul>
+    </div>
+} @else {
+<p>No user</p>
+}

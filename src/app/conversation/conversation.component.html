@@ -1,0 +1,43 @@
+<div class="conversationPage">
+
+    <div class="titlePart">
+        <h2>Conversation avec {{ userTexted.name }}</h2>
+    </div>
+
+
+    <div class="messagesPart">
+        @if (messages.length > 0) {
+            <div>
+                @for (message of messages; track messages) {
+
+                    <div>
+                        <p><strong>
+
+                            @if (message.senderId === userId) {
+
+                            }
+
+                            {{ (message.senderId === userId) ? userTexted.name : 'Vous' }}:</strong> {{ message.text }}
+                        </p>
+
+                        <small>{{ message.timestamp | date:'short' }}</small>
+                    </div>
+                }
+            </div>
+
+        } @else {
+
+            <span>No messages yet</span>
+        }
+
+    </div>
+
+
+    <div class="bottomPart">
+
+        <textarea class="textArea" [(ngModel)]="messageText" placeholder="Entrez un message..."></textarea>
+        <button class="buttonSend" (click)="sendMessage()">Envoyer</button>
+
+    </div>
+
+</div>

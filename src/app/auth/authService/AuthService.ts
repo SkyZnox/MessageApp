@@ -1,34 +1,98 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {db, User} from '../../database'; // Importez votre base Dexie.js
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private storageKey = 'userSession'; // Clé pour LocalStorage
+  private storageKey = 'userSession';
   private loggedIn: boolean = false;
 
+  constructor() {}
 
-  constructor() {
+  async saveUser(user: User): Promise<{ success: boolean; message: string }> {
+    const existingUser = await db.users.where('username').equals(user.username).first();
+
+    if (existingUser) {
+      return { success: false, message: 'The username already exists.' };
+    }
+
+    try {
+      await db.users.add(user);
+      return { success: true, message: 'User successfully registered !' };
+    } catch (error) {
+      console.error('User registration error:', error);
+      return { success: false, message: 'An error occurred during registration.' };
+    }
   }
 
-  // Enregistrer un utilisateur dans le stockage
-  saveUserSession(user: any) {
+  async authenticate(username: string, password: string): Promise<User | null> {
+    const user = await db.users
+        .where('username')
+        .equals(username)
+        .and((u) => u.password === password)
+        .first();
+
+    console.log(user)
+    return user || null;
+  }
+
+  saveUserSession(user: User) {
     localStorage.setItem(this.storageKey, JSON.stringify(user));
+    this.loggedIn = true;
   }
 
-  // Obtenir l'utilisateur stocké
-  getUserSession() {
+  getUserSession(): User | null {
     const user = localStorage.getItem(this.storageKey);
     return user ? JSON.parse(user) : null;
   }
 
-  // Supprimer la session utilisateur
-  clearUserSession() {
-    localStorage.removeItem(this.storageKey);
+  async getUserById(userId: number) {
+    try {
+      const user = await db.users.get(userId);
+      return user;
+    } catch (error) {
+      console.error('Error retrieving user by ID', error);
+      return null;
+    }
   }
 
 
-  isUserLoggedIn() {
-    return this.loggedIn;
+
+  async getUsersWithConversations(loggedInUserId: number) {
+    const messages = await db.messages.where('senderId').equals(loggedInUserId).toArray();
+    const messages2 = await db.messages.where('receiverId').equals(loggedInUserId).toArray();
+
+    let mess = messages.concat(messages2);
+    const userIds = new Set<number>();
+
+    mess.forEach((message) => {
+      message.participants.forEach((participantId) => {
+        if (participantId !== loggedInUserId) {
+          userIds.add(participantId);
+        }
+      });
+    });
+
+    const usersWithConversations = [];
+    for (const userId of userIds) {
+      const user = await db.users.get(userId);
+      if (user) {
+        usersWithConversations.push(user);
+      }
+    }
+
+    return usersWithConversations;
+  }
+
+
+
+  clearUserSession() {
+    localStorage.removeItem(this.storageKey);
+    this.loggedIn = false;
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.loggedIn || !!this.getUserSession();
   }
 }
