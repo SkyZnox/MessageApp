@@ -1,0 +1,75 @@
+.loginPage{
+  min-height: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginDiv{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: #28292d solid;
+  box-shadow: 1px 1px 1px black;
+  background-color: #414349;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.loginForm{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.loginInput{
+  border: none;
+  outline: none;
+  background-color: #414349;
+  color: white;
+}
+
+.wrapperInput{
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px #1d1e21 solid;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+}
+
+
+.wrapperInput:focus-within{
+  border: 1px white solid;
+}
+
+.buttonLogin{
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px #1d1e21 solid;
+  border-radius: 10px;
+  padding: 5px;
+  color: white;
+  background-color: #2c2e32;
+}
+
+.buttonLogin:hover{
+  background-color: #3c3e44;
+}
+
+.redirectSignIn{
+  color: #b9b9b9;
+  text-decoration: none;
+}
+
+.redirectSignIn:hover{
+  color: #ffffff;
+}
+
+.redirectSignInSpan{
+  margin: 15px;
+  padding: 15px;
+}

@@ -1,0 +1,14 @@
+@if (!isLoginPage() && !isSignInPage()){
+
+<div class="sideNavContainer">
+  <div id="mySidenav" class="sidenav">
+    <!--  <a class="closebtn material-icons md-18" onclick="openClose()">menu</a>-->
+    <a routerLink="/home" routerLinkActive="isActive"> Home </a>
+    <a routerLink="/posts" routerLinkActive="isActive"> Posts </a>
+    <a routerLink="/savepost" routerLinkActive="isActive"> Save my post </a>
+
+    <a routerLink="/profile" routerLinkActive="isActive"> Profile </a>
+    <a (click)="logout()"> Logout </a>
+  </div>
+</div>
+}

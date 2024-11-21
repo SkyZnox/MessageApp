@@ -1,0 +1,28 @@
+<div class="loginPage">
+  <div class="loginDiv">
+
+    <h2>Login</h2>
+
+    <form (ngSubmit)="onSubmit()" class="loginForm">
+      <label for="username" class="loginLabel">Username :</label>
+      <div class="wrapperInput">
+        <input type="text" id="username" [(ngModel)]="username" name="username" required class="loginInput" placeholder="Type your username">
+      </div>
+      <label for="password">Password :</label>
+      <div class="wrapperInput">
+
+        <input type="password" id="password" [(ngModel)]="password" name="password" required class="loginInput" placeholder="Type your password">
+      </div>
+
+
+      <button type="submit" class="buttonLogin">Login</button>
+    </form>
+    <span class="redirectSignInSpan">If you haven't any account on this website, click <a routerLink="/signin" routerLinkActive="isActive" class="redirectSignIn"> here </a> ! </span>
+<!--    <button class="buttonLogin" (click)="test()">test</button>-->
+
+
+
+  </div>
+
+
+</div>
