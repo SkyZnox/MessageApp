@@ -32,10 +32,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
-
-
-
   startConversation(user: User) {
     this.router.navigate(['/conversation', user.id]);
   }

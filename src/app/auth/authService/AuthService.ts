@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {db, User} from '../../database'; // Importez votre base Dexie.js
+import {db, Group, User} from '../../database';
+import {PromiseExtended} from "dexie";
 
 @Injectable({
   providedIn: 'root',
@@ -47,9 +48,37 @@ export class AuthService {
     return user ? JSON.parse(user) : null;
   }
 
+  async getGroupsFromUserId(id: number): Promise<Group[] | null> {
+    try {
+      const groups = await db.group.toArray();
+
+      const userGroups = groups.filter(group => group.usersId.includes(id));
+
+      console.log(userGroups);
+      return userGroups;
+    } catch (error) {
+      console.error('Error retrieving groups with user ID', error);
+      return null;
+    }
+  }
+
+  getGroupsFromHisId(groupId: number){
+    try{
+      const groups = db.group.where("usersId").equals([1,2,3]).toArray();
+      console.log(groups)
+      return groups
+    } catch (error){
+      console.error('Error retrieving groups with user ID', error);
+      return null;
+    }
+
+
+  }
+
   async getUserById(userId: number) {
     try {
       const user = await db.users.get(userId);
+      console.log(user)
       return user;
     } catch (error) {
       console.error('Error retrieving user by ID', error);

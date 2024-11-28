@@ -1,7 +1,7 @@
 <div class="conversationPage">
 
     <div class="titlePart">
-        <h2>Conversation avec {{ userTexted.name }}</h2>
+        <h2>Conversation avec {{ userTexted?.name }}</h2>
     </div>
 
 
@@ -35,7 +35,7 @@
 
     <div class="bottomPart">
 
-        <textarea class="textArea" [(ngModel)]="messageText" placeholder="Entrez un message..."></textarea>
+        <textarea class="textArea" [(ngModel)]="messageText" placeholder="Entrez un message..." (keydown)="sendMessageByEnter($event)"> </textarea>
         <button class="buttonSend" (click)="sendMessage()">Envoyer</button>
 
     </div>

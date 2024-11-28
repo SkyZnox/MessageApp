@@ -34,6 +34,7 @@ export class SignInComponent implements OnInit{
       name: this.name,
       username: this.username,
       password: this.password,
+      groupsId: []
     });
 
     this.message = result.message;

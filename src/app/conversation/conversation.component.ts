@@ -18,9 +18,10 @@ import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server"; /
 })
 export class ConversationComponent implements OnInit {
   userId: number = 0;
-  userTexted: any
+  userTexted?: any
   messages: Message[] = [];
   messageText: string = '';
+
 
   constructor(
       private route: ActivatedRoute,
@@ -57,6 +58,12 @@ export class ConversationComponent implements OnInit {
     }
   }
 
+  async sendMessageByEnter(event: KeyboardEvent){
+    if(event.key == "Enter"){
+      await this.sendMessage()
+    }
+  }
+
 
   async sendMessage() {
     const loggedInUser = this.authService.getUserSession();
@@ -79,3 +86,4 @@ export class ConversationComponent implements OnInit {
     }
   }
 }
+
